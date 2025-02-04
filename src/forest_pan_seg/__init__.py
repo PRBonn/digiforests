@@ -1,0 +1,1 @@
+from .minkowski_unet_panoptic import MinkUNetPanoptic

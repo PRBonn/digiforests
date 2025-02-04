@@ -1,0 +1,32 @@
+[build-system]
+requires = ["scikit-build-core"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "digiforests_devkit"
+version = "0.1.0"
+description = "A development kit for digiforests"
+readme = "README.md"
+authors = [{ name = "Meher Malladi", email = "meher.malladi@uni-bonn.de" }]
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "typer[all]",
+  "open3d==0.18",
+  "quickshift @ git+https://github.com/mehermvr/quickshift.git",
+  "cloth-simulation-filter",
+  # please pre-install torch compiled with CUDA 11.8 manually
+  "lightning",
+  "tensorboard",
+]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-datadir"]
+
+[tool.scikit-build]
+wheel.packages = ["src/digiforests_dataloader", "src/forest_pan_seg"]
+build-dir = "build/{wheel_tag}"
+wheel.cmake = false
+editable.mode = "redirect"
+editable.rebuild = true
+editable.verbose = true

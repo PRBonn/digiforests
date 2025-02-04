@@ -1,0 +1,20 @@
+services:
+  devkit:
+    container_name: digiforests_devkit_container
+    image: digiforests_devkit
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    volumes:
+      - "../:/home/dev/digiforests_devkit"
+      # - "/data/digiforests:/data"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
