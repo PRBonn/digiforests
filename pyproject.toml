@@ -24,7 +24,11 @@ dependencies = [
 test = ["pytest", "pytest-datadir"]
 
 [tool.scikit-build]
-wheel.packages = ["src/digiforests_dataloader", "src/forest_pan_seg"]
+wheel.packages = [
+  "src/digiforests_dataloader",
+  "src/forest_pan_seg",
+  "src/tree_dbh_estimation",
+]
 build-dir = "build/{wheel_tag}"
 wheel.cmake = false
 editable.mode = "redirect"
