@@ -36,6 +36,9 @@ from digiforests_dataloader.utils.logging import logger
 from forest_pan_seg import MinkUNetPanoptic
 
 
+app = typer.Typer(rich_markup_mode="markdown")
+
+
 def collate_fn(batch: list[dict[str, Tensor]]):
     """
     by default, the digiforests dataloader returns a dict of key value tensors.
@@ -136,6 +139,7 @@ def np_arrays_to_binary(semantics, instance, sem_conf=None):
     return binary_data
 
 
+@app.command()
 def main(
     include_sem_conf: bool = typer.Option(
         True,
@@ -161,38 +165,38 @@ def main(
     This function loads a trained model, performs inference on a specified dataset,
     and saves the predictions in a binary format.
 
-    Args:
-        include_sem_conf: If True, includes semantic confidence scores in the output.
-        seed: Random seed for ensuring reproducibility.
-        data_dir: Path to the root directory of the DigiForests dataset.
-        run_dir: Directory containing training run artifacts, including checkpoints.
-                 Used if ckpt_path is not provided.
-        ckpt_path: Direct path to a specific model checkpoint file. Takes precedence over run_dir.
+    \n\n**Args:**\n
+    - `include_sem_conf`: If True, includes semantic confidence scores in the output.\n
+    - `seed`: Random seed for ensuring reproducibility.\n
+    - `data_dir`: Path to the root directory of the DigiForests dataset.\n
+    - `run_dir`: Directory containing training run artifacts, including checkpoints.
+                 Used if ckpt_path is not provided.\n
+    - `ckpt_path`: Direct path to a specific model checkpoint file. Takes precedence over run_dir.
 
-    Workflow:
-    1. Set global random seed for reproducibility
-    2. Resolve and validate input paths
-    3. If ckpt_path is not provided, select the latest checkpoint from run_dir
-    4. Load the trained model from the checkpoint
-    5. Prepare the inference dataloader
-    6. Run inference on the dataset
+    \n\n**Workflow:**\n
+    1. Set global random seed for reproducibility\n
+    2. Resolve and validate input paths\n
+    3. If ckpt_path is not provided, select the latest checkpoint from run_dir\n
+    4. Load the trained model from the checkpoint\n
+    5. Prepare the inference dataloader\n
+    6. Run inference on the dataset\n
     7. Process and save predictions in binary format
 
-    Output:
+    \n\n**Output:**\n
     - Saves binary label files (.label) in the dataset structure:
-      data_dir/raw/{plot}/inference_labels/{scan}.label
-    - Binary format:
+      data_dir/raw/{plot}/inference_labels/{scan}.label\n
+    - Binary format:\n
       - If include_sem_conf is True:
-        bits 0-7: semantics, 8-15: semantic confidence, 16-31: instance
+        bits 0-7: semantics, 8-15: semantic confidence, 16-31: instance\n
       - If include_sem_conf is False:
         bits 0-15: semantics, 16-31: instance
 
-    Note:
-    - Either run_dir or ckpt_path must be provided
-    - The function assumes a specific dataset structure and model compatibility
+    \n\n**Note:**\n
+    - Either run_dir or ckpt_path must be provided\n
+    - The function assumes a specific dataset structure and model compatibility\n
     - Predictions are saved in the original dataset structure for easy comparison
 
-    Example usage:
+    \n\n**Example usage:**\n
     python inference.py --data-dir /path/to/digiforests --run-dir /path/to/training/run --conf
     """
 
@@ -238,4 +242,4 @@ def main(
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()

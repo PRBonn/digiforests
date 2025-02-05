@@ -25,7 +25,10 @@ from pathlib import Path
 from digiforests_dataloader.utils.io import write_json
 from digiforests_dataloader.utils.logging import logger
 
+app = typer.Typer(rich_markup_mode="markdown")
 
+
+@app.command()
 def split(
     raw_folder: Path = typer.Argument(
         ..., help="Path to the raw data folder containing DigiForests dataset."
@@ -41,25 +44,25 @@ def split(
     experiment folders. It generates a JSON file containing file paths and statistics
     for each split.
 
-    Args:
-        raw_folder: Root directory of the DigiForests dataset containing experiment folders.
-        output_fp: Custom path to save the output JSON file. If None, saves to raw_folder/data_split.json.
+    \n\n**Args:**\n
+    - `raw_folder`: Root directory of the DigiForests dataset containing experiment folders.\n
+    - `output_fp`: Custom path to save the output JSON file. If None, saves to raw_folder/data_split.json.
 
-    Splits:
-        - Train: Primary training data from multiple seasons.
-        - Validation: Held-out data for model tuning.
-        - Test: Unseen data for final model evaluation.
-        - Prediction: Specific subset (Spring 2023) for inference tasks.
+    \n\n**Splits:**\n
+    - Train: Primary training data from multiple seasons.\n
+    - Validation: Held-out data for model tuning.\n
+    - Test: Unseen data for final model evaluation.\n
+    - Prediction: Specific subset (Spring 2023) for inference tasks.
 
-    Output JSON Structure:
-        - File counts for each split
-        - Train/Val ratios
-        - File paths for each split
-        - Combined trainval set
+    \n\n**Output JSON Structure:**\n
+    - File counts for each split\n
+    - Train/Val ratios\n
+    - File paths for each split\n
+    - Combined trainval set
 
-    Note:
-        - Split ratios are calculated based on train and validation sets only.
-        - The function assumes a specific folder structure within the raw_folder.
+    \n\n**Note:**\n
+    - Split ratios are calculated based on train and validation sets only.\n
+    - The function assumes a specific folder structure within the raw_folder.
     """
 
     train_exp_folders = [
@@ -151,4 +154,4 @@ def split(
 
 
 if __name__ == "__main__":
-    typer.run(split)
+    app()

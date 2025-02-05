@@ -42,6 +42,8 @@ __VOXEL_SIZE__ = 0.05
 __GROUND_CONF_THRESHOLD__ = 0.95
 __STEM_CONF_THRESHOLD__ = 0.8
 
+app = typer.Typer(rich_markup_mode="markdown")
+
 
 def read_label(fp: Path):
     binary_data = np.fromfile(fp, dtype=np.uint32)
@@ -344,6 +346,7 @@ def eval_loop(
     return plot_rmse_map, rmse_average
 
 
+@app.command()
 def main(
     exp_name: str = typer.Argument(
         ..., help="Name of the experiment for tracking results."
@@ -376,28 +379,29 @@ def main(
     diameter measurement using cylinder fitting. It can process a single plot or
     multiple plots.
 
-    Args:
-        exp_name: Unique identifier for the experiment run.
-        inventory_csv: Path to the CSV file containing ground truth inventory data.
-        plot_folder: Path to a single plot's data (mutually exclusive with glob_dir).
-        label_folder: Path to semantic labels if not in plot_folder.
-        aggregated_cloud_pth: Path to a pre-aggregated point cloud file.
-        glob_dir: Directory containing multiple plot folders for batch processing.
-        visualize: If True, enables visualization of intermediate results.
+    \n\n**Args:**\n
+    - `exp_name`: Unique identifier for the experiment run.\n
+    - `inventory_csv`: Path to the CSV file containing ground truth inventory data.\n
+    - `plot_folder`: Path to a single plot's data (mutually exclusive with glob_dir).\n
+    - `label_folder`: Path to semantic labels if not in plot_folder.\n
+    - `aggregated_cloud_pth`: Path to a pre-aggregated point cloud file.\n
+    - `glob_dir`: Directory containing multiple plot folders for batch processing.\n
+    - `visualize`: If True, enables visualization of intermediate results.
 
-    Workflow:
-    1. Runs evaluation loop on specified plot(s)
-    2. Calculates per-plot and average RMSE for diameter estimation
+    \n\n**Workflow:**\n
+    1. Runs evaluation loop on specified plot(s)\n
+    2. Calculates per-plot and average RMSE for diameter estimation\n
     3. Appends results to a CSV file for experiment tracking
 
-    Output:
-    - Writes results to 'cylinder_fitting_results.csv' in the current directory.
+    \n\n**Output:**\n
+    - Writes results to 'cylinder_fitting_results.csv' in the current directory.\n
     - CSV columns: run_name, run_num, [plot_ids], avg_rmse
 
-    Note:
-    - If glob_dir is provided, it takes precedence over plot_folder and aggregated_cloud_pth.
+    \n\n**Note:**\n
+    - If glob_dir is provided, it takes precedence over plot_folder and aggregated_cloud_pth.\n
     - Visualization may significantly increase runtime and is intended for debugging.
     """
+
     filename = "cylinder_fitting_results.csv"
     plot_rmse_map, rmse_average = eval_loop(
         inventory_csv,
@@ -411,4 +415,4 @@ def main(
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()

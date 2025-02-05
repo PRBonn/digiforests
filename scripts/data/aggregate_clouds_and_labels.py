@@ -30,6 +30,7 @@ from digiforests_dataloader.utils.cloud import Cloud
 from digiforests_dataloader.utils.logging import logger, bar
 
 __VOXEL_SIZE__ = 0.01
+app = typer.Typer(rich_markup_mode="markdown")
 
 
 class Labels:
@@ -175,6 +176,7 @@ def denoise_cloud(cloud: Cloud, voxel_size: float):
     return denoised_cloud
 
 
+@app.command()
 def aggregate(
     exp_folder: Path = typer.Argument(
         ..., help="Path to the experiment folder containing scan and pose data."
@@ -195,29 +197,29 @@ def aggregate(
     This function processes a DigiForests experiment folder, combining multiple scans
     and their corresponding labels into a unified point cloud representation.
 
-    Workflow:
-    1. Read pose information and individual scans
-    2. Combine scans with their semantic and instance labels
-    3. Transform scans to a common coordinate frame
-    4. Aggregate all transformed scans
-    5. Optionally denoise the aggregated cloud
+    \n\n**Workflow:**\n
+    1. Read pose information and individual scans\n
+    2. Combine scans with their semantic and instance labels\n
+    3. Transform scans to a common coordinate frame\n
+    4. Aggregate all transformed scans\n
+    5. Optionally denoise the aggregated cloud\n
     6. Save the result as a PLY file
 
-    Args:
-        exp_folder: Path to the experiment folder containing:
-            - 'poses.txt': Scan pose information
-            - 'individual_clouds/': Directory with individual point cloud scans
-            - 'labels/': Directory with corresponding label files
-        output_folder: Directory where the aggregated cloud will be saved
-        denoise: If True, apply statistical outlier removal and voxel down-sampling
-        voxel_down_sample_size: Voxel size for down-sampling during denoising
+    \n\n**Args:**\n
+    - `exp_folder`: Path to the experiment folder containing:\n
+      - 'poses.txt': Scan pose information\n
+      - 'individual_clouds/': Directory with individual point cloud scans\n
+      - 'labels/': Directory with corresponding label files\n
+    - `output_folder`: Directory where the aggregated cloud will be saved\n
+    - `denoise`: If True, apply statistical outlier removal and voxel down-sampling\n
+    - `voxel_down_sample_size`: Voxel size for down-sampling during denoising
 
-    Output:
-        - Writes 'aggregated_cloud.ply' to the specified output folder
+    \n\n**Output:**\n
+    - Writes 'aggregated_cloud.ply' to the specified output folder
 
-    Note:
-        - Denoising can significantly reduce the point count but improve quality
-        - The voxel down-sampling size affects the trade-off between detail and file size
+    \n\n**Note:**\n
+    - Denoising can significantly reduce the point count but improve quality\n
+    - The voxel down-sampling size affects the trade-off between detail and file size
     """
     scan_poses = read_poses(exp_folder / "poses.txt")
     scans = read_scans(exp_folder / "individual_clouds")
@@ -233,4 +235,4 @@ def aggregate(
 
 
 if __name__ == "__main__":
-    typer.run(aggregate)
+    app()

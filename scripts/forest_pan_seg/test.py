@@ -35,6 +35,8 @@ from digiforests_dataloader.data_module.digiforests import mink_collate_fn
 
 from forest_pan_seg import MinkUNetPanoptic
 
+app = typer.Typer(rich_markup_mode="markdown")
+
 
 def prepare_dataloader(data_dir):
     pre_transform = ddt.Compose(
@@ -112,6 +114,7 @@ def test(data_dir: Path, ckpt_path: Path):
     return test_metrics
 
 
+@app.command()
 def main(
     seed: int = typer.Option(42, help="Random seed for reproducibility."),
     data_dir: Path = typer.Option(
@@ -129,33 +132,33 @@ def main(
     This function loads a trained model checkpoint and evaluates its performance
     on a specified test dataset.
 
-    Args:
-        seed: Random seed for ensuring reproducibility across runs.
-        data_dir: Path to the root directory of the DigiForests dataset.
-        run_dir: Directory containing training run artifacts, including checkpoints.
-                 Used if ckpt_path is not provided.
-        ckpt_path: Direct path to a specific model checkpoint file. Takes precedence over run_dir.
+    \n\n**Args:**\n
+    - `seed`: Random seed for ensuring reproducibility across runs.\n
+    - `data_dir`: Path to the root directory of the DigiForests dataset.\n
+    - `run_dir`: Directory containing training run artifacts, including checkpoints.
+                 Used if ckpt_path is not provided.\n
+    - `ckpt_path`: Direct path to a specific model checkpoint file. Takes precedence over run_dir.
 
-    Workflow:
-    1. Set global random seed for reproducibility
-    2. Resolve and validate input paths
-    3. If ckpt_path is not provided, select the latest checkpoint from run_dir
-    4. Load the trained model from the checkpoint
-    5. Prepare the test dataloader
-    6. Run inference on the test dataset
+    \n\n**Workflow:**\n
+    1. Set global random seed for reproducibility\n
+    2. Resolve and validate input paths\n
+    3. If ckpt_path is not provided, select the latest checkpoint from run_dir\n
+    4. Load the trained model from the checkpoint\n
+    5. Prepare the test dataloader\n
+    6. Run inference on the test dataset\n
     7. Compute and display test metrics
 
-    Output:
-    - Prints a JSON-formatted dictionary of test metrics including:
-      - Semantic segmentation metrics (e.g., Mean IOU)
-      - Panoptic quality metrics for relevant classes
+    \n\n**Output:**\n
+    - Prints a JSON-formatted dictionary of test metrics including:\n
+      - Semantic segmentation metrics (e.g., Mean IOU)\n
+      - Panoptic quality metrics for relevant classes\n
       - Mean Panoptic Quality (PQ)
 
-    Note:
-    - Either run_dir or ckpt_path must be provided
+    \n\n**Note:**\n
+    - Either run_dir or ckpt_path must be provided\n
     - The function assumes a specific dataset structure and model compatibility
 
-    Example usage:
+    \n\n**Example usage:**\n
     python test.py --data-dir /path/to/digiforests --run-dir /path/to/training/run
     """
 
@@ -179,4 +182,4 @@ def main(
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()

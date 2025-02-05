@@ -41,6 +41,8 @@ from digiforests_dataloader.utils.io import load_yaml_or_json, write_json, write
 from forest_pan_seg import MinkUNetPanoptic
 from forest_pan_seg.utils import ConsoleLogger, sync_config_keys
 
+app = typer.Typer(rich_markup_mode="markdown")
+
 
 def train(
     model_config: dict,
@@ -142,6 +144,7 @@ def train(
         trainer.test(model, datamodule=datamodule)
 
 
+@app.command()
 def main(
     model_config_fp: Optional[Path] = typer.Option(
         None,
@@ -188,37 +191,37 @@ def main(
     This function sets up the training environment, loads configurations, and initiates
     the training process for the forest panoptic segmentation model.
 
-    Args:
-        model_config_fp: Path to YAML file with model architecture settings.
-        lightning_config_fp: Path to YAML file with PyTorch Lightning Trainer settings.
-        data_config_fp: Path to YAML file with dataset and dataloader settings.
-        log_dir: Root directory for storing experiment logs and checkpoints.
-        data_dir: Path to the DigiForests dataset root directory.
-        experiment_name: Identifier for the current experiment series.
-        run_name: Optional identifier for the specific run (auto-generated if None).
-        debug: If True, enables debug mode with additional logging and directory cleaning.
-        threads: Override for the number of data loading worker threads.
-        ckpt: Path to a checkpoint file for resuming training.
+    \n\n**Args:**\n
+    - `model_config_fp`: Path to YAML file with model architecture settings.\n
+    - `lightning_config_fp`: Path to YAML file with PyTorch Lightning Trainer settings.\n
+    - `data_config_fp`: Path to YAML file with dataset and dataloader settings.\n
+    - `log_dir`: Root directory for storing experiment logs and checkpoints.\n
+    - `data_dir`: Path to the DigiForests dataset root directory.\n
+    - `experiment_name`: Identifier for the current experiment series.\n
+    - `run_name`: Optional identifier for the specific run (auto-generated if None).\n
+    - `debug`: If True, enables debug mode with additional logging and directory cleaning.\n
+    - `threads`: Override for the number of data loading worker threads.\n
+    - `ckpt`: Path to a checkpoint file for resuming training.
 
-    Workflow:
-    1. Set up logging and directory structure
-    2. Load and merge configuration files
-    3. Apply debug settings if enabled
-    4. Ensure configuration consistency across components
-    5. Save all configurations for reproducibility
-    6. Initialize random seeds for reproducibility
-    7. Set up PyTorch Lightning Trainer and loggers
+    \n\n**Workflow:**\n
+    1. Set up logging and directory structure\n
+    2. Load and merge configuration files\n
+    3. Apply debug settings if enabled\n
+    4. Ensure configuration consistency across components\n
+    5. Save all configurations for reproducibility\n
+    6. Initialize random seeds for reproducibility\n
+    7. Set up PyTorch Lightning Trainer and loggers\n
     8. Start the training process
 
-    Output:
-    - Trained model checkpoints saved to the run directory
-    - TensorBoard logs for monitoring training progress
-    - Configuration files saved for reproducibility
+    \n\n**Output:**\n
+    - Trained model checkpoints saved to the run directory\n
+    - TensorBoard logs for monitoring training progress\n
+    - Configuration files saved for reproducibility\n
     - Console and file logging of the training process
 
-    Note:
-    - This script uses Typer for CLI argument parsing
-    - Configuration files are expected to be in YAML or JSON format
+    \n\n**Note:**\n
+    - This script uses Typer for CLI argument parsing\n
+    - Configuration files are expected to be in YAML or JSON format\n
     - Debug mode affects both the training process and directory management
     """
     # catch the cli args first without modification
@@ -321,4 +324,4 @@ def main(
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()
