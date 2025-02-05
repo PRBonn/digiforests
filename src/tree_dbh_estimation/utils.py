@@ -19,74 +19,11 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import time
 import functools
 from pathlib import Path
 from typing import Callable
 
 from digiforests_dataloader.utils.logging import logger
-
-
-def timer(callable=None, *, level="info", name=None):
-    """
-    decorator to log time perf.
-    usage:
-    @timer(level="debug", name="Function to time")
-    or @timer
-
-    :param callable: the callable to wrap
-    :param level: info, debug, warning, error
-    :param name: The description to use in a log giving execution time
-    """
-
-    def _decorate(callable):
-        @functools.wraps(callable)
-        def wrapped_callable(*args, **kwargs):
-            t0 = time.perf_counter()
-            value = callable(*args, **kwargs)
-            t1 = time.perf_counter()
-            getattr(logger, level)(
-                f"{name if name is not None else callable.__name__} took: {t1-t0} sec",
-            )
-            return value
-
-        return wrapped_callable
-
-    if callable:
-        return _decorate(callable)
-
-    return _decorate
-
-
-def stage(callable=None, *, level="debug", name=None):
-    """
-    decorator to split an entrypoint into stages.
-    essentially prints a seperator and a logging info.
-    """
-    _log = getattr(logger, level)
-
-    def _decorate(callable):
-        @functools.wraps(callable)
-        def wrapped_callable(*args, **kwargs):
-            _log(
-                "▼" * 5
-                + f" Entering {name if name is not None else callable.__name__} "
-                + "▼" * 5
-            )
-            value = callable(*args, **kwargs)
-            _log(
-                "▲" * 5
-                + f" Exiting {name if name is not None else callable.__name__} "
-                + "▲" * 5
-            )
-            return value
-
-        return wrapped_callable
-
-    if callable:
-        return _decorate(callable)
-
-    return _decorate
 
 
 def log_scalars_in_arguments(

@@ -22,14 +22,14 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import numpy as np
 import open3d as o3d
+from pathlib import Path
 import open3d.core as o3c
+from typing import Callable, Any
+
 from .logging import logger
 from .math import lmap
-from typing import Callable, Any
 
 
 class Cloud:

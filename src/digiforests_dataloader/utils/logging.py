@@ -65,21 +65,6 @@ def bar(sequence: Iterable, desc: str = "Working...", total: int | None = None):
     prog.stop()
 
 
-# use progress bars
-def get_progress_ctx():
-    """
-    Usage:
-        with get_progress_ctx() as progress:
-            total = 100
-            bar = progress.add_task("[light_slate_blue]Building edge list...", total=total)
-            for i in range(0, total):
-                progress.update(bar, advance=1)
-
-    :return: a Progress context manager
-    """
-    return Progress(console=console)
-
-
 class Logger:
     """
     Just import logger and you're off with a default logger that can use

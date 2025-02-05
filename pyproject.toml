@@ -14,14 +14,13 @@ dependencies = [
   "typer[all]",
   "open3d==0.18",
   "quickshift @ git+https://github.com/mehermvr/quickshift.git",
-  "cloth-simulation-filter",
   # please pre-install torch compiled with CUDA 11.8 manually
   "lightning",
   "tensorboard",
 ]
 
 [project.optional-dependencies]
-test = ["pytest", "pytest-datadir"]
+test = ["pytest"]
 
 [tool.scikit-build]
 wheel.packages = [

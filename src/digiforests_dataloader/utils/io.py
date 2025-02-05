@@ -20,10 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import yaml
 import json
 from pathlib import Path
-
-import yaml
 
 from .logging import logger
 from .serialize import PathEncoder

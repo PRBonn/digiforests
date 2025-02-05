@@ -27,7 +27,7 @@ from typing import Callable
 from torch.utils.data import Dataset
 from functools import cached_property
 
-from ..utils.logging import logger, bar
+from ..utils.logging import logger
 from ..utils.serialize import TorchSerializedList
 from ..utils.io import load_yaml_or_json, write_json
 

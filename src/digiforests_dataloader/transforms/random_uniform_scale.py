@@ -20,8 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from torch import Tensor
 import random
+from torch import Tensor
 from ..utils.logging import logger
 
 Number = int | float

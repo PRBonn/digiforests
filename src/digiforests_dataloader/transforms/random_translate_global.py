@@ -20,10 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from itertools import repeat
-
 import torch
 from torch import Tensor
+from itertools import repeat
 
 Number = int | float
 Number_Sequence = list[Number] | tuple[Number]

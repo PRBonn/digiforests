@@ -21,7 +21,6 @@
 # SOFTWARE.
 
 from typing import Any
-
 import numpy.typing as npt
 
 
