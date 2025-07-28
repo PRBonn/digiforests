@@ -4,13 +4,6 @@
 
 We provide a comprehensive toolkit for the DigiForests point cloud dataset, including a dataloader for machine learning research and preprocessing tools for data manipulation.
 
-## Features
-
-- 🌲 Full support for DigiForests point cloud dataset
-- 🔬 PyTorch and PyTorch [Lightning](https://lightning.ai/docs/pytorch/stable/) compatible
-- 🚀 Efficient data loading and preprocessing
-- 🧩 Flexible data split management
-
 ## Installation
 
 ```bash
