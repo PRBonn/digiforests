@@ -19,8 +19,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import typer
 from pathlib import Path
+
+import typer
 
 from digiforests_dataloader.utils.io import write_json
 from digiforests_dataloader.utils.logging import logger
@@ -66,33 +67,33 @@ def split(
     """
 
     train_exp_folders = [
-        "2023-03/exp06-m3",
-        "2023-03/exp07-m1",
-        "2023-03/exp09-m5",
-        "2023-03/exp20-d2",
-        "2023-10/exp20-d2",
-        "2024-07/exp20-d2",
+        "train/2023-03/exp06-m3",
+        "train/2023-03/exp07-m1",
+        "train/2023-03/exp09-m5",
+        "train/2023-03/exp20-d2",
+        "train/2023-10/exp20-d2",
+        "train/2024-07/exp20-d2",
     ]
 
     val_exp_folders = [
-        "2023-03/exp11-c1",
-        "2023-10/exp11-c1",
-        "2024-07/exp11-c1",
+        "val/2023-03/exp11-c1",
+        "val/2023-10/exp11-c1",
+        "val/2024-07/exp11-c1",
     ]
 
     test_exp_folders = [
-        "2023-03/exp04-m2",
-        "2023-10/exp04-m2",
-        "2024-07/exp04-m2",
+        "test/2023-03/exp04-m2",
+        "test/2023-10/exp04-m2",
+        "test/2024-07/exp04-m2",
     ]
     # 2023-03 folders only
     pred_exp_folders = [
-        "2023-03/exp04-m2",
-        "2023-03/exp06-m3",
-        "2023-03/exp07-m1",
-        "2023-03/exp09-m5",
-        "2023-03/exp11-c1",
-        "2023-03/exp20-d2",
+        "test/2023-03/exp04-m2",
+        "train/2023-03/exp06-m3",
+        "train/2023-03/exp07-m1",
+        "train/2023-03/exp09-m5",
+        "val/2023-03/exp11-c1",
+        "train/2023-03/exp20-d2",
     ]
     exp_folders = [
         train_exp_folders,
@@ -111,7 +112,7 @@ def split(
 
     for idx, exp_folder_list in enumerate(exp_folders):
         for folder in exp_folder_list:
-            files = list((raw_folder / folder / "individual_clouds").glob("*.pcd"))
+            files = list((raw_folder / folder / "ground_clouds").glob("*.pcd"))
             relative_files = [file_path.relative_to(raw_folder) for file_path in files]
             exp_files[idx].extend(relative_files)
 
