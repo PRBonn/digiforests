@@ -14,9 +14,7 @@ git clone https://github.com/PRBonn/digiforests.git
 pip install .
 ```
 
-## Quick Start
-
-### Basic Usage
+## Basic Usage
 
 ```python
 from digiforests_dataloader import DigiForestsDataModule
