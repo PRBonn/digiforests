@@ -115,6 +115,6 @@ python scripts/forest_pan_seg/inference.py \
 
 \* Note that to run the `dbh_estimation` approach on the output of forest_pan_seg, the confidence scores computed during inference are required (pass the `--conf` flag).
 
-A pre-trained model is provided [here](http://ipb.uni-bonn.de/html/deeplearningmodels/malladi2025icra/forest_pan_seg_model.ckpt) which you can place in the location `<digiforests_repository>/models/forest_pan_seg_model.ckpt`. It can be used with both the testing and inference scripts.
+A pre-trained model is provided [here](http://ipb.uni-bonn.de/html/deeplearningmodels/malladi2025icra/forest_pan_seg_model.ckpt) which you can place in say a location like `<digiforests_repository>/models/forest_pan_seg_model.ckpt`. It can be used with both the testing and inference scripts.
 
 Every script has it's own documentation available by using the `--help` flag.
