@@ -20,6 +20,8 @@ The DigiForests dataset contains:
 
 See `scripts/dbh_estimation/README.md` for more on how to estimate tree DBH on the DigiForests data.
 
+A pre-trained model is available [here](http://ipb.uni-bonn.de/html/deeplearningmodels/malladi2025icra/forest_pan_seg_model.ckpt).
+
 ## Installation
 
 From the package root, run the following if you haven't already
@@ -113,6 +115,6 @@ python scripts/forest_pan_seg/inference.py \
 
 \* Note that to run the `dbh_estimation` approach on the output of forest_pan_seg, the confidence scores computed during inference are required (pass the `--conf` flag).
 
-A pre-trained model is provided in `models/forest_pan_seg_model.ckpt` which can be used with both the testing and inference scripts.
+A pre-trained model is provided [here](http://ipb.uni-bonn.de/html/deeplearningmodels/malladi2025icra/forest_pan_seg_model.ckpt) which you can place in say a location like `<digiforests_repository>/models/forest_pan_seg_model.ckpt`. It can be used with both the testing and inference scripts.
 
 Every script has it's own documentation available by using the `--help` flag.

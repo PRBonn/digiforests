@@ -4,33 +4,41 @@
     <a href="#usage"><img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" /></a>
     <a href="https://www.ipb.uni-bonn.de/pdfs/malladi2025icra.pdf"><img src="https://img.shields.io/badge/Paper-pdf-<COLOR>.svg?style=flat-square" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" /></a>
+    <a href="https://www.ipb.uni-bonn.de/data/digiforest-dataset/">
+      <img src="https://img.shields.io/badge/Dataset-website-blue?style=flat-square" alt="DigiForests Dataset Website" />
+    </a>
 </div>
-
-![Teaser](https://www.ipb.uni-bonn.de/data/digiforest-dataset/devkit_teaser.jpg)
 
 The DigiForests dataset 🌳 provides LiDAR point clouds collected with a backpack-carried mobile mapping system and aerial scanning system.
 It includes semantic annotations for trees, shrubs, and ground, as well as tree instance annotations and fine-grained semantics for tree stems and crowns.
 
 This development kit offers utilities for handling the DigiForests dataset and includes tools for training panoptic segmentation models and estimating tree DBH.
 
-## Project Structure 📁
+## Project Structure
 
 ```bash
 digiforests
-├── docker/               # Docker configuration files
-├── models/               # Pre-trained model checkpoints
-├── scripts/              # Utility scripts for data processing and model evaluation
+├── data/                   # Additional asset files to be used with the dataset
+├── docker/                 # Docker configuration files
+├── scripts/                # Utility scripts for data processing and model evaluation
 │   ├── data/
 │   ├── dbh_estimation/
 │   └── forest_pan_seg/
-├── src/                  # Source code for the development kit
+├── src/                    # Source code for the development kit
 │   ├── digiforests_dataloader/
 │   ├── forest_pan_seg/
 │   └── tree_dbh_estimation/
-├── tests/                # Unit tests
+├── tests/                  # Unit tests
 ```
 
-## Setup 🛠️
+## Features
+
+- **Data Loading** 🗂️: Efficient data loading utilities for the DigiForests dataset
+- **Panoptic Segmentation** 🔍: Tools for training and evaluating panoptic segmentation models
+- **DBH Estimation** 📏: Scripts for estimating tree diameter at breast height
+- **Docker Support** 🐳: Containerized environment for reproducible research
+
+## Setup
 
 1. Ensure your system supports CUDA 11.8.
 2. [Download](https://www.ipb.uni-bonn.de/data/digiforest-dataset/) the DigiForests dataset.
@@ -61,35 +69,29 @@ digiforests
    pytest tests
    ```
 
-9. Explore the data and tools provided in the `scripts/` directory.
+9. Explore the data and tools provided in the `scripts/` directory. Further documentation on usage can also be found in the respective directories (see next section).
 
 > Note: This setup has been tested only with CUDA 11.8 and PyTorch 2.2.1 compiled with CUDA 11.8.
 > Other configurations may work but are not supported.
 
-## Features 🌟
 
-- **Data Loading** 🗂️: Efficient data loading utilities for the DigiForests dataset
-- **Panoptic Segmentation** 🔍: Tools for training and evaluating panoptic segmentation models
-- **DBH Estimation** 📏: Scripts for estimating tree diameter at breast height
-- **Docker Support** 🐳: Containerized environment for reproducible research
+## Usage
 
-## Usage 📊
+Please refer to the README files in each script directory for specific usage instructions:
 
-Refer to the README files in each script directory for specific usage instructions:
-
-- [Data Processing Scripts](scripts/data/README.md)
-- [DBH Estimation](scripts/dbh_estimation/README.md)
+- [Data Pre-processing Scripts and Dataloader](scripts/data/README.md)
 - [Forest Panoptic Segmentation](scripts/forest_pan_seg/README.md)
+- [DBH Estimation](scripts/dbh_estimation/README.md)
 
-## Docker 🐳
+## Docker
 
 For a containerized environment, see the [Docker README](docker/README.md) for setup and usage instructions.
 
-## License 📜
+## License
 
 This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
 
-## Citation 📚
+## Citation
 
 If you use this dataset or development kit in your research, please cite:
 
