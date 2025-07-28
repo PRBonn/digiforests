@@ -28,7 +28,7 @@ pip install .
 ```python
 from digiforests_dataloader import DigiForestsDataModule
 
-# Initialize datamodule
+# Initialize datamodule. Note that the data_dir should contain a raw/data_split.json
 datamodule = DigiForestsDataModule(
     data_dir="/path/to/dataset",
     split="train"
@@ -43,24 +43,6 @@ See `data/dataloader.py` for additional details.
 **Important Note:** To use our dataloader, please ensure that the dataset corresponds to the [Dataset Configuration](#dataset-configuration) given below. Especially, the `raw` folder needs to contain a `data_split.json`. You can either use the one provided with this repository in `<digiforests_repository>/data/data_split.json` or you can generate one following the instructions in the [Split Configuration](#split-configuration) section.
 
 
-### Custom Splits
-
-To create a custom split of the dataset, use the provided script:
-
-```bash
-python scripts/data/split_dataset.py /path/to/dataset/raw [--output-fp /path/to/output.json]
-```
-
-This script splits the DigiForests dataset into train, validation, test, and prediction sets.
-
-### Point Cloud Aggregation
-
-To aggregate individual point clouds and labels:
-
-```bash
-python scripts/data/aggregate_clouds_and_labels.py /path/to/plot/folder /path/to/output/folder [--denoise] [--voxel-down-sample-size FLOAT]
-```
-
 ## Dataset Configuration
 
 The dataset requires a specific folder structure:
@@ -72,6 +54,16 @@ dataset/
 │   └── point_clouds/
 └── processed/
 ```
+
+### Custom Splits
+
+To create a custom split of the dataset, use the provided script:
+
+```bash
+python scripts/data/split_dataset.py /path/to/dataset/raw [--output-fp /path/to/output.json]
+```
+
+This script splits the DigiForests dataset into train, validation, test, and prediction sets.
 
 ### Split Configuration
 
@@ -95,6 +87,14 @@ def split(...):
 ```
 
 After modifying the split configuration, run the script again to generate the updated `data_split.json`.
+
+### Point Cloud Aggregation
+
+To aggregate individual point clouds and labels:
+
+```bash
+python scripts/data/aggregate_clouds_and_labels.py /path/to/plot/folder /path/to/output/folder [--denoise] [--voxel-down-sample-size FLOAT]
+```
 
 ## Advanced Usage
 

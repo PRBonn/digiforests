@@ -18,18 +18,25 @@ This development kit offers utilities for handling the DigiForests dataset and i
 
 ```bash
 digiforests
-├── docker/               # Docker configuration files
-├── models/               # Pre-trained model checkpoints
-├── scripts/              # Utility scripts for data processing and model evaluation
+├── data/                   # Additional asset files to be used with the dataset
+├── docker/                 # Docker configuration files
+├── scripts/                # Utility scripts for data processing and model evaluation
 │   ├── data/
 │   ├── dbh_estimation/
 │   └── forest_pan_seg/
-├── src/                  # Source code for the development kit
+├── src/                    # Source code for the development kit
 │   ├── digiforests_dataloader/
 │   ├── forest_pan_seg/
 │   └── tree_dbh_estimation/
-├── tests/                # Unit tests
+├── tests/                  # Unit tests
 ```
+
+## Features
+
+- **Data Loading** 🗂️: Efficient data loading utilities for the DigiForests dataset
+- **Panoptic Segmentation** 🔍: Tools for training and evaluating panoptic segmentation models
+- **DBH Estimation** 📏: Scripts for estimating tree diameter at breast height
+- **Docker Support** 🐳: Containerized environment for reproducible research
 
 ## Setup
 
@@ -62,21 +69,15 @@ digiforests
    pytest tests
    ```
 
-9. Explore the data and tools provided in the `scripts/` directory.
+9. Explore the data and tools provided in the `scripts/` directory. Further documentation on usage can also be found in the respective directories (see next section).
 
 > Note: This setup has been tested only with CUDA 11.8 and PyTorch 2.2.1 compiled with CUDA 11.8.
 > Other configurations may work but are not supported.
 
-## Features
-
-- **Data Loading** 🗂️: Efficient data loading utilities for the DigiForests dataset
-- **Panoptic Segmentation** 🔍: Tools for training and evaluating panoptic segmentation models
-- **DBH Estimation** 📏: Scripts for estimating tree diameter at breast height
-- **Docker Support** 🐳: Containerized environment for reproducible research
 
 ## Usage
 
-Refer to the README files in each script directory for specific usage instructions:
+Please refer to the README files in each script directory for specific usage instructions:
 
 - [Data Pre-processing Scripts and Dataloader](scripts/data/README.md)
 - [Forest Panoptic Segmentation](scripts/forest_pan_seg/README.md)
