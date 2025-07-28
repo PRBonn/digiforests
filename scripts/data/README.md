@@ -38,7 +38,10 @@ datamodule = DigiForestsDataModule(
 trainer.fit(model, datamodule=datamodule)
 ```
 
-See `docs/dataloader.py` for additional details.
+See `data/dataloader.py` for additional details.
+
+**Important Note:** To use our dataloader, please ensure that the dataset corresponds to the [Dataset Configuration](#dataset-configuration) given below. Especially, the `raw` folder needs to contain a `data_split.json`. You can either use the one provided with this repository in `<digiforests_repository>/data/data_split.json` or you can generate one following the instructions in the [Split Configuration](#split-configuration) section.
+
 
 ### Custom Splits
 

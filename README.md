@@ -4,9 +4,10 @@
     <a href="#usage"><img src="https://img.shields.io/badge/python-3670A0?style=flat-square&logo=python&logoColor=ffdd54" /></a>
     <a href="https://www.ipb.uni-bonn.de/pdfs/malladi2025icra.pdf"><img src="https://img.shields.io/badge/Paper-pdf-<COLOR>.svg?style=flat-square" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" /></a>
+    <a href="https://www.ipb.uni-bonn.de/data/digiforest-dataset/">
+      <img src="https://img.shields.io/badge/Dataset-website-blue?style=flat-square" alt="DigiForests Dataset Website" />
+    </a>
 </div>
-
-![Teaser](https://www.ipb.uni-bonn.de/data/digiforest-dataset/devkit_teaser.jpg)
 
 The DigiForests dataset 🌳 provides LiDAR point clouds collected with a backpack-carried mobile mapping system and aerial scanning system.
 It includes semantic annotations for trees, shrubs, and ground, as well as tree instance annotations and fine-grained semantics for tree stems and crowns.
@@ -30,7 +31,7 @@ digiforests
 ├── tests/                # Unit tests
 ```
 
-## Setup 🛠️
+## Setup
 
 1. Ensure your system supports CUDA 11.8.
 2. [Download](https://www.ipb.uni-bonn.de/data/digiforest-dataset/) the DigiForests dataset.
@@ -73,13 +74,13 @@ digiforests
 - **DBH Estimation** 📏: Scripts for estimating tree diameter at breast height
 - **Docker Support** 🐳: Containerized environment for reproducible research
 
-## Usage 📊
+## Usage
 
 Refer to the README files in each script directory for specific usage instructions:
 
-- [Data Processing Scripts](scripts/data/README.md)
-- [DBH Estimation](scripts/dbh_estimation/README.md)
+- [Data Pre-processing Scripts and Dataloader](scripts/data/README.md)
 - [Forest Panoptic Segmentation](scripts/forest_pan_seg/README.md)
+- [DBH Estimation](scripts/dbh_estimation/README.md)
 
 ## Docker 🐳
 
@@ -89,7 +90,7 @@ For a containerized environment, see the [Docker README](docker/README.md) for s
 
 This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
 
-## Citation 📚
+## Citation
 
 If you use this dataset or development kit in your research, please cite:
 
