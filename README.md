@@ -14,7 +14,7 @@ It includes semantic annotations for trees, shrubs, and ground, as well as tree 
 
 This development kit offers utilities for handling the DigiForests dataset and includes tools for training panoptic segmentation models and estimating tree DBH.
 
-## Project Structure 📁
+## Project Structure
 
 ```bash
 digiforests
@@ -67,7 +67,7 @@ digiforests
 > Note: This setup has been tested only with CUDA 11.8 and PyTorch 2.2.1 compiled with CUDA 11.8.
 > Other configurations may work but are not supported.
 
-## Features 🌟
+## Features
 
 - **Data Loading** 🗂️: Efficient data loading utilities for the DigiForests dataset
 - **Panoptic Segmentation** 🔍: Tools for training and evaluating panoptic segmentation models
@@ -82,11 +82,11 @@ Refer to the README files in each script directory for specific usage instructio
 - [Forest Panoptic Segmentation](scripts/forest_pan_seg/README.md)
 - [DBH Estimation](scripts/dbh_estimation/README.md)
 
-## Docker 🐳
+## Docker
 
 For a containerized environment, see the [Docker README](docker/README.md) for setup and usage instructions.
 
-## License 📜
+## License
 
 This project is free software made available under the MIT license. For details, see the [LICENSE](LICENSE) file.
 
