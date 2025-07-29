@@ -67,6 +67,10 @@ pq_metrics_every: 6
 # data.yaml
 batch_size: 1
 num_workers: 1
+dataset:
+    include_semantics: true
+    include_instance: true
+    delete_existing_processed_files: false
 
 # lightning.yaml
 seed: 42
