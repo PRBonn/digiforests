@@ -20,14 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import torch
-import numpy as np
 from enum import Enum
 from pathlib import Path
 
+import numpy as np
+import torch
+
 from ..utils.cloud import Cloud
 from ..utils.logging import logger
-
 from .base_dataset import BaseDataset
 
 
@@ -143,7 +143,7 @@ class DigiForestsDataset(BaseDataset):
         mode: str = "default",  # can be default or pred
         vds: int | None = None,
         include_semantics: bool = True,
-        include_instance: bool = False,
+        include_instance: bool = True,
         mock_intensity: bool = False,
         transform=None,
         pre_transform=None,
@@ -239,7 +239,6 @@ class DigiForestsDataset(BaseDataset):
             if self.include_semantics:
                 # int32 causes issues
                 semantics = labels.semantics.astype(np.int64).reshape(-1)
-                # semantics = semantics - np.min(semantics) # no need to zero after remapping
                 if semantics.shape[0] != pos.shape[0]:
                     raise ValueError(
                         f"semantics shape {semantics.shape}, pos shape {pos.shape},"
@@ -247,7 +246,6 @@ class DigiForestsDataset(BaseDataset):
                     )
                 semantics_t = torch.from_numpy(semantics)
                 data["semantics"] = semantics_t
-                # cloud.semantics = semantics
 
             if self.include_instance:
                 # instance is int64 (long). int32 causes issues
@@ -260,9 +258,6 @@ class DigiForestsDataset(BaseDataset):
                     )
                 instance_t = torch.from_numpy(instance_v)
                 data["instance"] = instance_t
-                # cloud.instance = instance_v
-                # useful meta information
-                # data["num_instances"] = instance_t.unique().shape[0]
 
         if self.pre_filter is not None and self.pre_filter(raw_fp, data):
             # pre_filter returns True, means sample should be filtered
