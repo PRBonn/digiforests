@@ -44,9 +44,9 @@ python scripts/forest_pan_seg/train.py \
 
 **Key Options**:
 
-- `--model-conf`: Optional Model architecture override config (YAML)
-- `--lightning-conf`: Optional Trainer parameters override config (YAML)
-- `--data-conf`: Data module settings override config (YAML)
+- `--model-conf`: Optional Model architecture override config (YAML). You can check all configurable parameters [here](https://github.com/PRBonn/digiforests/blob/8f82fa97c9f1bf2808ab4399191ae084b72a3327/src/forest_pan_seg/minkowski_unet_panoptic.py#L48)
+- `--lightning-conf`: Optional Trainer parameters override config (YAML). The passed config will be unpacked [here](https://github.com/PRBonn/digiforests/blob/8f82fa97c9f1bf2808ab4399191ae084b72a3327/scripts/forest_pan_seg/train.py#L136). So the config corresponds to `lightning.pytorch.Trainer` [arguments](https://lightning.ai/docs/pytorch/stable/api/lightning.pytorch.trainer.trainer.Trainer.html#lightning.pytorch.trainer.trainer.Trainer).
+- `--data-conf`: Data module settings override config (YAML). You can check all configurable parameters [here](https://github.com/PRBonn/digiforests/blob/8f82fa97c9f1bf2808ab4399191ae084b72a3327/src/digiforests_dataloader/data_module/digiforests.py#L32) and [here](https://github.com/PRBonn/digiforests/blob/8f82fa97c9f1bf2808ab4399191ae084b72a3327/src/digiforests_dataloader/dataset/digiforests.py#L139) for the dataset-specific config which should be specified under a `dataset` key (see example below).
 - `--debug`: Enable debug mode (clean logs, etc.)
 - `--ckpt`: Resume from the provided checkpoint
 
@@ -61,7 +61,6 @@ lr: 0.001
 batch_size: 1
 vds: 0.1
 clear_torch_cache: true
-cluster_voxel_coords: false
 pq_metrics_every: 6
 
 # data.yaml
