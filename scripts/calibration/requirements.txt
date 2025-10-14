@@ -1,0 +1,9 @@
+open3d
+numpy
+opencv-python
+opencv-contrib-python
+scipy
+pandas
+PyYAML
+evo
+pytransform3d
