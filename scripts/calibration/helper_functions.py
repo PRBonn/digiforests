@@ -119,13 +119,13 @@ def transform_points(points, rvec, tvec):
 
 def parse_timestamp(filename, prefix):
     """Extract the timestamp (seconds and nanoseconds) from a filename."""
-    parts = filename.replace(prefix, "").replace(".pcd", "").replace(".jpg", "").split("_")
+    parts = filename.replace(prefix, "").replace(".pcd", "").replace(".ply", "").replace(".jpg", "").replace(".png", "").split("_")
     return int(parts[0]), int(parts[1])
 
 def find_closest_images(pcd_folder, image_folder):
     """Find the closest image file for each point cloud file."""
-    pcd_files = [f for f in os.listdir(pcd_folder) if f.endswith(".pcd")]
-    image_files = [f for f in os.listdir(image_folder) if f.endswith(".jpg")]
+    pcd_files = [f for f in os.listdir(pcd_folder) if f.endswith(".pcd") or f.endswith(".ply")]
+    image_files = [f for f in os.listdir(image_folder) if f.endswith(".jpg") or f.endswith(".png")]
 
     # Parse timestamps
     pcd_timestamps = [(f, *parse_timestamp(f, "cloud_")) for f in pcd_files]
