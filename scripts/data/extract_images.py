@@ -21,8 +21,6 @@ IMAGE_TOPICS = [
 # "png" or "jpg"
 IMAGE_FORMAT = "png"
 
-limit = 500
-
 
 def ensure_out_dir(base_out_dir: Path, topic: str) -> Path:
     """Return output directory for a given topic, creating it if needed."""
@@ -74,7 +72,8 @@ def extract(
                 cam_dir = ensure_out_dir(out_dir, conn.topic)
                 msg_count = reader.topics[conn.topic].msgcount
 
-                count = 0
+                # limit = 500
+                # count = 0
                 for connection, timestamp, rawdata in tqdm(
                     reader.messages(connections=[conn]),
                     total=msg_count,
@@ -86,9 +85,9 @@ def extract(
                     sec = int(msg.header.stamp.sec)
                     nsec = int(msg.header.stamp.nanosec)
                     save_image(cv_img, cam_dir, sec, nsec)
-                    count += 1
-                    if count > limit:
-                        break
+                    # count += 1
+                    # if count > limit:
+                    #     break
 
 
 if __name__ == "__main__":
