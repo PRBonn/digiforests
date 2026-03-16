@@ -14,7 +14,7 @@ It includes semantic annotations for trees, shrubs, and ground, as well as tree 
 
 This development kit offers utilities for handling the DigiForests dataset and includes tools for training panoptic segmentation models and estimating tree DBH.
 
-Please find the corresponding [**Codabench Challenge**](https://www.codabench.org/competitions/8889/) [here](https://www.codabench.org/competitions/8889/). There we provide an evaluation on the hidden test labels of the dataset.
+Please find the corresponding [**Codabench Challenge**](https://www.codabench.org/competitions/14843/) [here](https://www.codabench.org/competitions/14843/). There we provide an evaluation on the hidden test labels of the dataset.
 
 ## Project Structure
 
